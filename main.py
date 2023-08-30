@@ -140,14 +140,14 @@ with tab3:
 
 with tab4:
     availability=pd.DataFrame(df[['country','month_availability']])
-    availability_count=availability.groupby('country')['month_availability'].count().reset_index()
+    availability_count=availability.groupby('country')['month_availability'].sum().reset_index()
     fig_avm=px.line(availability_count,x='country',y='month_availability',title='Availability per Month')
 
-    # availability = pd.DataFrame(df[['country', 'year_availability']])
-    # availability_count = availability.groupby('country')['year_availability'].count().reset_index()
-    # fig_avy = px.line(availability_count, x='country', y='year_availability',title='Availability per year')
+    availability = pd.DataFrame(df[['country', 'year_availability']])
+    availability_count = availability.groupby('country')['year_availability'].sum().reset_index()
+    fig_avy = px.line(availability_count, x='country', y='year_availability',title='Availability per year')
     st.plotly_chart(fig_avm, use_container_width=True)
-    # st.plotly_chart(fig_avy, use_container_width=True)
+    st.plotly_chart(fig_avy, use_container_width=True)
 
 
 with tab5:
